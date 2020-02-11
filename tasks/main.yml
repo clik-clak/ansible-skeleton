@@ -1,2 +1,16 @@
 ---
-# tasks file for .
+# tasks file for ansible-skeleton
+
+
+- hosts: all
+  remote_user: root
+  become: false
+  
+  tasks:
+    - name: "Print on remote hosts"
+      print:
+        msg: "testing remote"
+      
+    - name: "Print on localhost"
+      print:
+        msg: "testing local"
