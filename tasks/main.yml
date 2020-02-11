@@ -3,8 +3,7 @@
 
 
 - hosts: all
-  remote_user: root
-  become: false
+  gather_facts: false
   
   tasks:
     - name: "Print on remote hosts"
