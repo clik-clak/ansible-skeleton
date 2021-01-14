@@ -2,14 +2,21 @@
 # tasks file for ansible-skeleton
 
 
-- hosts: all
+- hosts: web
+  become_user: ansible-admin
+  become: true
   gather_facts: false
   
   tasks:
     - name: "Print on remote hosts"
-      print:
-        msg: "testing remote"
-      
+      command: 'echo "testing remote"'
+      register: output
+      debug:
+        msg: {{ output.stdout }}
+
     - name: "Print on localhost"
-      print:
-        msg: "testing local"
+      command: 'echo "testing local"'
+      register: output_local
+      debug:
+        msg: {{ output_local }}
+      delegate_to: localhost
