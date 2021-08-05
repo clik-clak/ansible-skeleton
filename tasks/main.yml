@@ -2,21 +2,16 @@
 # tasks file for ansible-skeleton
 
 
-- hosts: web
-  become_user: ansible-admin
-  become: true
-  gather_facts: false
+- nodes: all
+  become_user: root
+  gather_facts: yes
   
   tasks:
     - name: "Print on remote hosts"
-      command: 'echo "testing remote"'
-      register: output
-      debug:
-        msg: {{ output.stdout }}
+      module_name: this
 
     - name: "Print on localhost"
-      command: 'echo "testing local"'
-      register: output_local
-      debug:
-        msg: {{ output_local }}
-      delegate_to: localhost
+      module: that
+
+    - name: "Make JSON based REST API call"
+      ????
